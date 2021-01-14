@@ -1,0 +1,35 @@
+    private void dgvConsultaTransferencia_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+           
+            if (dgvConsultaTransferencia.IsCurrentCellDirty)
+            {
+                dgvConsultaTransferencia.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+
+        }
+
+        private void dgvConsultaTransferencia_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            if (dgvConsultaTransferencia.Columns[e.ColumnIndex].Name == "chk")
+            {
+                DataGridViewCheckBoxCell CeldaCheckbox = (DataGridViewCheckBoxCell)dgvConsultaTransferencia.Rows[e.RowIndex].Cells["chk"];
+
+                if ((Boolean)CeldaCheckbox.Value)
+                {
+                    btnAnularTransf.Enabled = true;
+                    ContadorCheckBoxActivados ++;
+
+                }
+                else {
+
+                    ContadorCheckBoxActivados--;
+                    if (ContadorCheckBoxActivados == 0)
+                        {
+                            btnAnularTransf.Enabled = false;
+                            
+                        }
+                    }
+             }
+
+        }
