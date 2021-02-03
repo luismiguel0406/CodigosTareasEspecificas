@@ -1,0 +1,19 @@
+ public static string SerializarToXml(object obj)
+        {
+            try
+            {
+                StringWriter strWriter = new StringWriter();
+                XmlSerializer serializer = new XmlSerializer(obj.GetType(), new XmlRootAttribute("Root"));
+
+                serializer.Serialize(strWriter, obj);
+                String resultXml = strWriter.ToString();
+                strWriter.Close();
+
+                return resultXml;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+    }
